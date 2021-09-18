@@ -1,4 +1,4 @@
 @echo off
 git add .
-git commit -m "%date% 2"
+git commit -m "rework"
 git push origin main
