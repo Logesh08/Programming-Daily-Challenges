@@ -42,3 +42,12 @@
 
 
 
+
+n=int(input())
+b=bin(n)[2:][::-1] 
+res=[]
+for i in range(len(b)):
+    a=int(b[i])*2**i
+    if a!=0:
+        res.append(a)
+print(*res[::-1],sep='+')
