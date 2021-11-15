@@ -62,3 +62,27 @@
 
 
 
+n=int(input())
+l=list(map(int,input().split()))
+position=0
+x=[['-']*n for _ in range(max(l))]
+col=0
+for i in l:
+    if(i>0):
+        add=-1
+        for j in range(i):
+            position+=add
+            try:
+                x[position][col]='*'
+            except:
+                x.insert(0,['-']*n)
+                x[position][col]='*'
+    else:
+        add=1
+        for j in range(-i):
+            position+=add
+            x[position][col]='*'
+    col+=1
+    
+for o in x:
+    print(*o,sep='')
