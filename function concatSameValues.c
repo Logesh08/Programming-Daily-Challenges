@@ -46,3 +46,82 @@
 
 // Output:
 // 11 1111 1111
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct BoundedArray
+{
+    int SIZE;
+    int *arr;
+} boundedArray;
+boundedArray* concatSameValues(int SIZE, int *arr)
+{
+    boundedArray * barr= malloc(sizeof(boundedArray));
+    barr -> arr=(int*)malloc(SIZE*sizeof(int));
+    barr -> SIZE=0;
+    char str1[1001],str2[1001];
+    int i,j;
+    for(i=0;i<SIZE;i++)
+    {
+        int flag=0;
+        for(j=i+1;j<SIZE;j++)
+        {
+            if(arr[i]==arr[j] && arr[i]!=0 && arr[j]!=0)
+            {
+                sprintf(str1,"%d",arr[i]);
+                sprintf(str2,"%d",arr[j]);
+                strcat(str1,str2);
+                barr ->arr[barr -> SIZE++]= atoi(str1);
+                arr[i]=0;arr[j]=0;
+                flag=1;
+            }
+        }if(flag==0 && arr[i]!=0)
+        {
+            barr->arr[barr->SIZE++]=arr[i];
+        }
+    }
+    for(i=0;i<barr->SIZE;i++)
+    {
+        int t;
+        for(j=i+1;j<barr->SIZE;j++)
+        {
+            if(barr->arr[i]>barr->arr[j])
+            {
+                t=barr->arr[i];
+                barr->arr[i]=barr->arr[j];
+                barr->arr[j]=t;
+            }
+        }
+    }return barr;
+}
+int main()
+{
+    int N;
+    scanf("%d", &N);
+    int arr[N];
+    for(int index = 0; index < N; index++)
+    {
+        scanf("%d", &arr[index]);
+    }
+    boundedArray *bArr = concatSameValues(N, arr);
+    if(bArr == NULL)
+    {
+        printf("Array is not formed\n");
+    }
+    if(bArr->SIZE <= 0)
+    {
+        printf("Invalid size for the array\n");
+    }
+    for(int index = 0; index < bArr->SIZE; index++)
+    {
+        printf("%d ", bArr->arr[index]);
+    }
+    return 0;
+}
