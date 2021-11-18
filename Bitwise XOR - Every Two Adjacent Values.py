@@ -54,3 +54,10 @@
 
 
 
+n=int(input())
+a=list(map(int,input().split()))
+for ctr in range(1,n):
+    for i in range(n-ctr):
+        a[i]=a[i]^a[i+1]
+    a.pop()
+    print(*a)
