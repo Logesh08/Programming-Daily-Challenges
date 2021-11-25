@@ -63,3 +63,17 @@
 
 
 
+a,b=map(int,input().split())
+a=bin(a)[2:];b=bin(b)[2:];s=""
+if len(a)<len(b):
+    a='0'*(len(b)-len(a))+a
+else:
+    b='0'*(len(a)-len(b))+b
+a=a[::-1];b=b[::-1]
+for i in range(0,len(a),2):
+    if a[i]==b[i]:
+        s+=a[i]
+if s:
+    print(int(s[::-1],2))
+else:
+    print("-1")
