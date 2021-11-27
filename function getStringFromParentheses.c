@@ -48,3 +48,44 @@
 
 
 
+#include <stdio.h>
+#include <stdlib.h>
+char* getStringFromParentheses(char *str)
+{
+    char* string=(char *)malloc(sizeof(char)*1001);
+    int index,len=strlen(str);
+    for(int i=0;i<len;i++)
+    {
+        if(str[i]=='(')
+        {
+            index=i;
+            break;
+        }
+    }
+    if(str[(index+1)%len]==')')
+    {
+        strcpy(string,"-1");
+        return string;
+    }
+    for(int i=(index+1)%len,ind=0;str[i]!=')';i=(i+1)%len,ind++)
+    {
+        string[ind]=str[i];
+    }
+    return string;
+}
+int main()
+{
+    char str[101];
+    scanf("%s", str);
+    char *newStr = getStringFromParentheses(str);
+    if(newStr == NULL || newStr == str)
+    {
+        printf("New string is not formed\n");
+    }
+    if(newStr[0] == '\0' || newStr[0] == ' ')
+    {
+        printf("String is empty\n");
+    }
+    printf("%s", newStr);
+    return 0;
+}
