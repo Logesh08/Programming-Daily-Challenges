@@ -1,6 +1,6 @@
 <img src="./src/PID14815.png"/>
 
-
+<pre>
 a,b,c=map(int,input().split())
 ctr=b
 while True:
@@ -17,3 +17,4 @@ while True:
         b+=1
     else:
         break
+</pre>
