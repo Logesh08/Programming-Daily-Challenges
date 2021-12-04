@@ -49,3 +49,15 @@
 
 
 
+s=input().strip() 
+l=["zero","one","two","three","four","five","six","seven","eight","nine"]
+ans=""
+for i in s:
+    if i.isdigit():
+        print(l[int(i)],end="") 
+        ans="" 
+    else:
+        ans+=i 
+        if ans in l:
+            print(l.index(ans),end="")
+            ans="" 
