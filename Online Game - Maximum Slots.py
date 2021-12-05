@@ -46,3 +46,18 @@
 
 
 
+a=input().split()
+b=a[0].split(':')
+t1=int(b[0])*60+int(b[1])
+b=a[1].split(':')
+t2=int(b[0])*60+int(b[1])
+
+p,q=t1%15,t2%15
+if p:
+  t1=t1+15-t1%15
+if q:
+  t2=t2-t2%15
+s=abs(t2-t1)
+if t2<t1:
+    s=24*60-s
+print(s//15)
