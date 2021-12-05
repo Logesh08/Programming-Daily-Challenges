@@ -6,7 +6,7 @@ string='abcde'
 ctr=1
 while ctr<=x:
     ind=0
-    while ind<y:
+    while ind&lt;y:
         print(str(ctr)+&sbquo;.&sbquo;+string[ind%5])
         ind+=1
     ctr+=1
