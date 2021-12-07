@@ -76,3 +76,12 @@
 
 
 
+m=int(input())
+l=[input().split() for i in range(m)]
+for i in range(m):
+    for j in range(m):
+        if l[i][j]!='0' and l[j][i]!='0':
+            continue
+        else:
+            l[i][j]='0'
+    print(*l[i])
