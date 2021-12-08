@@ -42,3 +42,68 @@
 
 // Output:
 // 16 6 9 20
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Time
+{
+    int days;
+    int hours;
+    int minutes;
+    int seconds;
+};
+#include<string.h>
+struct Time* calculateTotalTime(char *str)
+{
+    struct Time *totaltime=malloc(sizeof(struct Time));
+    char *ptr=strtok(str," ");
+    int day=0,hrs=0,min=0,sec=0;
+    while(ptr!=NULL)
+    {
+        if(ptr[strlen(ptr)-1]=='d')day+=atoi(ptr);
+        else if(ptr[strlen(ptr)-1]=='h')hrs+=atoi(ptr);
+        else if(ptr[strlen(ptr)-1]=='m')min+=atoi(ptr);
+        else sec+=atoi(ptr);
+        ptr=strtok(NULL," ");
+    }
+    if(sec%60>=0)
+    {
+        min+=sec/60;
+        sec=sec%60;
+    }
+    if(min%60>=0)
+    {
+        hrs+=min/60;
+        min=min%60;
+    }
+    if(hrs%24>=0)
+    {
+        day+=hrs/24;
+        hrs=hrs%24;
+    }
+    totaltime->days=day;
+    totaltime->hours=hrs;
+    totaltime->minutes=min;
+    totaltime->seconds=sec;
+    return totaltime;
+}
+int main()
+{
+    char str[101];
+    scanf("%[^\n]", str);
+    struct Time *time = calculateTotalTime(str);
+    if(time == NULL)
+    {
+        printf("Time is not formed\n");
+    }
+    printf("%d %d %d %d", time->days, time->hours, time->minutes, time->seconds);
+    return 0;
+}
