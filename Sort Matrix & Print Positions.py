@@ -44,3 +44,23 @@
 # 1-1 2-1
 # 3-2 2-2
 # 4-1 4-2
+
+
+
+
+
+
+
+r,c=map(int,input().split())
+l=[list(map(int,input().split())) for i in range(r)]
+new_list=[]
+temp=0
+for i in range(r):
+    for j in range(c):
+        new_list.append([l[i][j],i+1,j+1])
+new_list.sort(key=lambda x:x[0])
+for i in range(r):
+    for j in range(c):
+        print(new_list[temp][1],new_list[temp][2],sep="-",end=" ")
+        temp+=1
+    print()
