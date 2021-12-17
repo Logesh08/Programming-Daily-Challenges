@@ -66,3 +66,47 @@
 // NOT SAME
 // Mutton 2 2200
 // Fish 2 1900
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+class Item{
+    int weight;
+    int price ;
+    String name;
+    Item(String s,int w,int p){
+        name=s;
+        weight=w;
+        price=p;
+    }
+    public int equals(Item i){
+        if((this.name.equalsIgnoreCase(i.name))&&(this.weight==i.weight||this.price==i.price)) return true;
+        else return false;
+    }
+    public String toString(){
+        return name+" "+weight+" "+price;
+    }
+}
+public class Hello {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Item item1 = new Item(sc.nextLine().trim(), sc.nextInt(), sc.nextInt());
+        sc.nextLine();
+        Item item2 = new Item(sc.nextLine().trim(), sc.nextInt(), sc.nextInt());
+        System.out.println(item1.equals(item2) ? "SAME" : "NOT SAME");
+        System.out.println(item1);
+        System.out.println(item2);
+    } // End of main() function
+} // End of Hello class
