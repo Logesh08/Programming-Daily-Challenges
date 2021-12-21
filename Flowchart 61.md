@@ -2,7 +2,7 @@
 
 <pre>
 x,y=map(int,input().split())
-while x<y:
+while x&lt;y:
     print(x,y)
     if x%2==y%2:
         x+=1
