@@ -43,3 +43,61 @@
 // 102<555 = True
 // The 3rd relational operator returns False.
 // Hence 0 is printed as the output.
+ 
+
+
+
+
+
+
+ #include <stdio.h>
+#include <stdlib.h>
+int evaluateOrder(char *str)
+{
+   int nums[1001], x = 0, l = strlen(str), y = 0, z = 0;
+   char curr_str[20], symbols[100];
+   for(int i = 0; i <= l; i++)
+   {
+       if(str[i] == '<' || str[i] == '>' || str[i] == '\0')
+       {
+           curr_str[x] = '\0';
+           x = 0;
+           nums[y++] = atoi(curr_str);
+           if(str[i] != '\0')
+           {
+               symbols[z++] = str[i];
+           }
+       }
+       else
+       {
+           curr_str[x++] = str[i];
+       }
+   }
+   x = 0;
+   for(int i = 0; i < y-1; i++)
+   {
+       if(symbols[x] == '>')
+       {
+           if(nums[i] <= nums[i+1])
+           {
+               return 0;
+           }
+       }
+       else
+       {
+           if(nums[i] >= nums[i+1])
+           {
+               return 0;
+           }
+       }
+       x++;
+   }
+   return 1;
+}
+int main()
+{
+    char str[101];
+    scanf("%s", str);
+    printf("%d", evaluateOrder(str));
+    return 0;
+}
