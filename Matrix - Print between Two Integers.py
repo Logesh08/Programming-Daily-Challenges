@@ -84,3 +84,4 @@ if si < ei:
     print(*arr[arr.index(s):arr.index(e)+1])
 else:
     print(*arr[si:],*arr[:ei+1])
+ 
