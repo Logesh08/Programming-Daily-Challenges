@@ -48,4 +48,9 @@
 
 
 
-
+n=int(input())
+arr = input().split()
+summ=0
+for i in range(n):
+    summ+=int(arr[i][1:]+arr[(i+1)%n][0])
+print(summ)
