@@ -72,26 +72,3 @@
 
 
 
-n = int(input())
-arr = list(map(int,input().split()))
-k = int(input())
-i=0
-p=0
-for _ in range(k):
-    while arr[i]==0:
-        i += p
-        if i>=n: i=0
-        if i<0 : i=n-1
-        if sum(arr)==0: 
-            break
-    x = arr[i]%10
-    arr[i] = arr[i] //10
-    if x%2==0:
-        i += 1
-        p = 1
-    else:
-        i -= 1
-        p = -1
-    if i>=n: i=0
-    if i<0 : i=n-1
-print(sum(arr) if sum(arr)!=0 else -1)
