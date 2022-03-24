@@ -51,3 +51,19 @@
 
 # Output:
 # 3
+
+
+
+
+
+
+s=input().strip()
+s2=""
+i=0
+while i<len(s)-1:
+    if s[i]!=s[i+1]:
+        s2+=s[i]
+        s2+=s[i+1]
+        i+=1
+    i+=1
+print(len(s)-len(s2))

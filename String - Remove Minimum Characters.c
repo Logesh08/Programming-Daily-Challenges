@@ -51,3 +51,31 @@
 
 // Output:
 // 3
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int i=0,j,k=0,l;
+    char a[1000];
+    scanf("%s",a);
+    l=strlen(a);
+    while(i+1<l)
+    {
+        if(a[i]!=a[i+1])
+        {
+            k+=2;
+            i+=2;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    printf("%d",l-k);
+}
