@@ -37,13 +37,14 @@ class Circle {
     public Circle(int radius) {
         this.radius = radius;
     }
+    int doubleSet = 0;
     public Circle(double radius){
-        
+        doubleSet = 1;
         this.radius=radius;
     }
     
     public double getArea(){
-        if((radius%1)!=0){
+        if(doubleSet==1){
             radius/=2.00;
         }
         return radius*radius*(22/7.00);
