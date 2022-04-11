@@ -46,3 +46,28 @@
 
 
 
+#include <stdio.h>
+#include <stdlib.h>
+int areConsecutive(char *str)
+{
+    int first,second;
+    for(int i=0;str[i];i++)
+    {
+        char temp=str[i+1];
+        str[i+1]='\0';
+        first=atoi(str);
+        str[i+1]=temp;
+        second=atoi(str+i+1);
+        if(str[i+1]=='0') continue;
+    
+        if(second-1==first||second+1==first) return 1;
+    }
+    return 0;
+}
+int main()
+{
+    char str[101];
+    scanf("%s", str);
+    printf("%d", areConsecutive(str));
+    return 0;
+}
