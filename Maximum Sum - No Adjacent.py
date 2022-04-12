@@ -57,3 +57,11 @@
 
 
 
+n=int(input())
+m=[list(map(int,input().split())) for _ in range(2)]
+inc=exc=0
+for j in range(n):
+    new_exc=max(exc,inc)
+    inc=exc+max(m[0][j],m[1][j])
+    exc=new_exc
+print(max(inc,exc))
