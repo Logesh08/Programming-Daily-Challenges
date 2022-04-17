@@ -46,37 +46,43 @@
 #include <stdlib.h>
 #include<math.h>
 #include<string.h>
-char* findBinarySum(int N, char binValues[N][101])
+char * twonumbers(char *a, char *b)
 {
-    int i = 0,len;
-    long long int sum=0;
-    for(;i<N;i++){
-        len = strlen(binValues[i]);
-        int itr=0,rem;
-        long long int d=0;
-        for(int x=len-1;x>=0;x--){
-            rem = binValues[i][x] - 48;
-            d += rem * pow(2,itr);
-            itr++;
+    char arr[101];
+    int len1 = strlen(a)-1,len2 = strlen(b)-1;
+    int sum=0,ind=0,iter=0;
+    while(len1>=0 || len2>=0 || sum == 1)
+    {
+        if(len1>=0)
+        {
+            sum += a[len1] - '0';
         }
-        if(len>10) printf("%lld\n",d);
-        sum += d;
+        if(len2>=0)
+        {
+            sum += b[len2] - '0';
+        }
+        ind+=sprintf(arr+ind,"%d",(sum%2));
+        sum = sum / 2;
+        len1--;
+        len2--;
     }
     
-    char *answer = malloc(999999);
-    char tmp [999];
-    int n=sum;
-    for(i=0;n>0;i++){
-        tmp[i] = n%2;
-        n/=2;
+    char *fin = (char *)malloc(sizeof(char)*101);
+    for(int index=strlen(arr)-1; index>=0; index--)
+    {
+        fin[iter++] = arr[index]; 
     }
-    int d=0;
-    n=i;
-    for(i=n-1;i>=0;i--){
-        sprintf(answer,"%s%d",answer,tmp[i]);
-    }
-    return answer;
+    return fin;
 }
+char* findBinarySum(int N, char binValues[N][101])
+{
+    char *result = malloc(sizeof(char)*101);
+    for(int index = 0; index<N; index++)
+    {
+        strcpy(result,twonumbers(result,binValues[index]));
+    }
+    return result;
+}    
 int main()
 {
     int N;
