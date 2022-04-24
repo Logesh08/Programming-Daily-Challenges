@@ -3,8 +3,8 @@ Please convert the following python code to c so that the c program executes suc
 <br/>
 <br/>
 <pre>
-#include <stdio.h>
-#include <math.h>
+#include &lt;stdio.h>
+#include &lt;math.h>
 void main(){
     int f,s,k,i;
     scanf("%d%d%d",&f,&s,&k);
