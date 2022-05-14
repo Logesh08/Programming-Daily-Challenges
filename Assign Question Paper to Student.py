@@ -54,4 +54,4 @@ while True:
         Sum+=int(i)
     n = Sum
     if n<27: break
-print(chr(64 + n),n)
+print(chr(64 + n))
