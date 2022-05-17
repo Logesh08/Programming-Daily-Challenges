@@ -82,3 +82,33 @@
 
 
 
+x=int(input())
+n=2**x
+matrix=[[0 for i in range(n)]for j in range(n)]
+x=1
+n//=2
+def fill(size,i,j):
+    global x
+    if size==1:
+        matrix[i][j]=x
+        x+=1
+        return
+    else:
+        size//=2
+        fill(size,i,j)
+        fill(size,i,j+size)
+        fill(size,i+size,j)
+        fill(size,i+size,j+size)
+fill(n,0,0)
+fill(n,0,n)
+fill(n,n,0)
+fill(n,n,n)
+for i in matrix:
+    print(*i)
+
+
+
+
+
+
+## 2
