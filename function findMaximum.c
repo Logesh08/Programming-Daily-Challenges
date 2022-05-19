@@ -54,3 +54,77 @@
 // 83 80 51 78
 // 69 82 86 56
 // 81 53 90 62
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct BoundedArray
+{
+    int M, N;
+    int **matrix;
+} boundedArray;
+boundedArray* findMaximum(int R, int C, int *matrix, int K)
+{
+    boundedArray *ba = malloc(sizeof(boundedArray));
+    ba->M=R/K;
+    ba->N=C/K;
+    ba->matrix=malloc(sizeof(int*)*R);
+    for(int i=0;i<ba->M;i++)
+    {
+        ba->matrix[i]=malloc(sizeof(int)*C);
+        for(int j=0;j<ba->N;j++)
+        {
+            int max=0;
+            for(int ii=i*K;ii<i*K+K;ii++)
+            {
+                for(int jj=j*K;jj<j*K+K;jj++)
+                {
+                    max=matrix[ii*C+jj]>max?matrix[ii*C+jj]:max;
+                }
+            }
+            ba->matrix[i][j]=max;
+        }
+    }
+    return ba;
+
+} // End of findMaximum function
+int main()
+{
+    int R, C, K;
+    scanf("%d %d", &R, &C);
+    int matrix[R][C];
+    for(int row = 0; row < R; row++)
+    {
+        for(int col = 0; col < C; col++)
+        {
+            scanf("%d", &matrix[row][col]);
+        }
+    }
+    scanf("%d", &K);
+    boundedArray *bArr = findMaximum(R, C, matrix, K);
+    if(bArr == NULL)
+    {
+        printf("Matrix is not formed\n");
+    }
+    if(bArr->M <= 0 || bArr->N <= 0)
+    {
+        printf("Invalid size for the matrix\n");
+    }
+    for(int row = 0; row < bArr->M; row++)
+    {
+        for(int col = 0; col < bArr->N; col++)
+        {
+            printf("%d ", bArr->matrix[row][col]);
+        }
+        printf("\n");
+    }
+    return 0;
+} // End of main() function
