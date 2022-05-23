@@ -42,3 +42,18 @@
 
 # Explanation:
 # The maximum possible sum of 52 is obtained when we follow 4->10->10->9->10->2->7
+
+
+
+
+
+s,h=map(int,input().split())
+m=[list(map(int,input().split())) for _ in range(s)]
+for j in range(1,h):
+    m[0][j]+=m[0][j-1]
+for i in range(1,s):
+    m[i][0]+=m[i-1][0]
+for i in range(1,s):
+    for j in range(1,h):
+        m[i][j]+=max(m[i-1][j],m[i][j-1])
+print(m[-1][-1])
