@@ -45,3 +45,237 @@ When we train Employee 8, using the special offer 2 and 10 get free training.
 Now all the employees who do not know Japanese are accounted for the training.
 So the minimum billable training count is 2.
 
+
+
+
+
+
+<br>
+
+<pre>
+#include &lt;bits/stdc++.h>
+ 
+using namespace std;
+int ans=0;
+vector&lt;int> know;
+void print(vector&lt;vector&lt;int>>& mat){
+    int ctr=0;
+    for(auto i : mat) {
+        cout << ctr << " " << know[ctr] << " => ";
+        ctr++;
+        for(auto j :i){
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+    cout << ans<< endl;
+}
+void g(vector&lt;vector&lt;int>>& root, int par, int curr){
+    
+    int ctr=0;
+    
+    for(int nei : root[curr]){
+        g(root, curr, nei);
+        if(!know[nei]){
+            ctr++;
+        }
+        know[nei] =1;
+    }
+    
+    if(ctr){
+        ans++;
+            know[curr]=know[par]=1;
+    }
+}
+int main(int argc, char** argv)
+{
+    int N; cin >> N;
+    vector&lt;vector&lt;int>> root(N);
+    know.resize(N,0);
+    
+    for(int i=1; i&lt;N; i++){
+        int V; cin >> V >> know[i];
+        root[V].push_back(i);
+    }
+    know[0] =1;
+    int ctr=0;
+    for(int nei : root[0]){
+        g(root,0, nei);
+        
+        if(!know[nei]){
+            ctr++;
+        }
+        
+        know[nei]=1;
+    }
+    
+    if(ctr) ans++;
+    cout <&lt;ans;
+}
+</pre>
+
+<br>
+<pre>
+import java.util.*;
+
+class Employee implements Comparable&lt;Employee> {
+    private int id;
+    private Set&lt;Employee> mentees;
+    private Employee mentor;
+    private boolean isFluent;
+    
+    public Employee(int id) {
+        mentees = new HashSet<>();
+        this.id = id;
+        mentor = null;
+        isFluent = false;
+    }
+    
+    public void addMentees(Employee pupil) {
+        mentees.add(pupil);
+    }
+    
+    public void setMentor(Employee mentor) {
+        this.mentor = mentor;
+    }
+    
+    public Employee getMentor() {
+        return mentor;
+    }
+    
+    public boolean isFluent() {
+        return isFluent;
+    }
+    
+    public void setFluent(boolean fluent) {
+        isFluent = fluent;
+    }
+    
+    public Set<Employee> getMentees() {
+        return mentees;
+    }
+    
+    public int getId() {
+        return id;
+    }
+    
+    public void completeTraining() {
+        isFluent = true;
+        for (Employee e: mentees) {
+            e.isFluent = true;
+        }
+        mentees.clear();
+    }
+    
+    public int getNonFluentCount() {
+        return (int) mentees.stream().filter(e->!e.isFluent).count();
+    }
+    
+    @Override
+    public int compareTo(Employee o) {
+        if (o.isFluent) {
+            return -1;
+        }
+        if (isFluent) {
+            return 1;
+        }
+        int cur = getNonFluentCount();
+        int other = o.getNonFluentCount();
+        if (mentor != null) {
+            cur++;
+        }
+        if (o.mentor != null) {
+            other++;
+        }
+        int val = Integer.compare(other, cur);
+        return val;
+    }
+}
+
+public class Hello {
+
+    public static void main(String[] args) {
+		//Your Code Here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int counter = 1;
+		Employee[] employees = new Employee[n];
+		for (int i = 0; i < n; i++) {
+		    employees[i] = new Employee(i);
+		}
+		employees[0].setFluent(true);
+		for (int i = 1; i < n; i++) {
+		    int a = sc.nextInt();
+		    int b = sc.nextInt();
+		    if (b == 0) {
+		        employees[a].addMentees(employees[i]);
+		    } else {
+		        employees[i].setFluent(true);
+		    }
+		    if (!employees[a].isFluent()) {
+		        employees[i].setMentor(employees[a]);
+		    }
+		}
+		int offers = 0;
+		for (int i = n - 1; i >= 0; i--) {
+		    Employee cur = employees[i];
+		    if (cur.getNonFluentCount() > 0) {
+		        offers++;
+		        cur.completeTraining();
+		        if (cur.getMentor() != null) {
+		            cur.getMentor().setFluent(true);
+		        }
+		    }
+		}
+		System.out.println(offers);
+
+	}
+}
+</pre>
+
+<br>
+<pre>
+#include &lt;bits/stdc++.h>
+ 
+using namespace std;
+
+vector&lt;int> vis(100001,0);
+vector&lt;int> lang(100001,0);
+vector&lt;int> adj[100001];
+int counter[100001]={0};
+int mentor[100001];
+int ans=0;
+
+void dfs(int src){
+    int flag=0;
+    for(auto& it: adj[src]){
+        if(vis[it]==0 && lang[it]==0){
+            vis[src]=1;
+            vis[it]=1;
+            vis[mentor[src]]=1;
+            flag=1;
+        }
+    }
+    if(flag){
+        ans++;
+    }
+}
+
+int main(int argc, char** argv)
+{//printf("->\n");
+int n,u,v;
+cin>>n;
+lang[0]=0;
+for(int i=1;i&lt;n;i++){
+    cin>>u>>v;
+    adj[u].push_back(i);
+    mentor[i]=u;
+    lang[i]=v;
+}
+for(int i=n-1;i>=0;i--){
+    dfs(i);
+}
+cout&lt;&lt;ans&lt;&lt;endl;
+}
+</pre>
