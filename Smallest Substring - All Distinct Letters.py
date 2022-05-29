@@ -32,3 +32,35 @@
 
 # Explanation:
 # The smallest sub string that contains all the distinct letters is LDKFFKpPoOGAFSGxxkllhaJSHJAlqady whose length is 32.
+
+
+
+
+
+
+
+
+
+
+
+
+s=input().strip()
+l=[]
+for i in range(len(s)):
+    if s[i] not in l:
+        l.append(s[i])
+mini=9999
+for i in range(len(s)):
+    l2=[]+l[:]
+    k=-1
+    for j in range(i,len(s)):
+        if s[j] in l2:
+            l2.remove(s[j])
+        if l2==[]:
+            k=j
+            break
+    if k!=-1:
+        temp=k-i
+        if temp<mini:
+            mini=temp
+print(mini+1)
