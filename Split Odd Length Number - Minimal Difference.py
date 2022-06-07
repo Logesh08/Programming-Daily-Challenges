@@ -30,3 +30,21 @@
 # 1444
 # 996
 
+
+
+
+
+
+
+
+
+
+num = list(input())
+num = list(map(int, num))
+num.sort()
+if num[0] == 0:
+    for i in range(len(num)):
+        if num[i] != 0:
+            num[0], num[i] = num[i], num[0]
+            break
+print(*num[:len(num)//2+1], '\n', *num[len(num)//2+1:][::- 1], sep = '')
