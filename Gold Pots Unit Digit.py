@@ -46,3 +46,4 @@ i = sum = 0
 while i<n:
     sum += arr[i]
     i+= arr[i]%10
+print(sum)
