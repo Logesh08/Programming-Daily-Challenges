@@ -40,3 +40,10 @@
 
 
 
+n = int(input())
+arr = [list(map(list,input().split())) for i in range(n)]
+for pairs in arr:
+    while pairs[0] or pairs[1]:
+        if pairs[0]: print(pairs[0].pop(0),end='')
+        if pairs[1]: print(pairs[1].pop(0),end='')
+    print()
