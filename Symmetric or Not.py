@@ -1,4 +1,4 @@
-Symmetric or Not
+# Symmetric or Not
 
 # The program must accept a binary matrix of size RxC as input. The program must print H if the matrix is horizontally symmetric, V if the matrix is vertically symmetric or S if the matrix is symmetric (both horizontally and vertically). Else the program must print -1 as the output.
 
