@@ -43,3 +43,7 @@
 s = input().strip()
 s = list(filter(lambda x: not int(x)%2 ,sorted(s)[::-1]))
 print(''.join(s) if s else -1)
+
+
+# OneLiner
+print(''.join(filter(lambda x: not int(x) % 2, sorted(input().split())[::-1])) or -1)
